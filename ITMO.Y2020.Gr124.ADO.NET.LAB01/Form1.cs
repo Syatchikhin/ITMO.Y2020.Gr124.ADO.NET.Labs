@@ -12,7 +12,7 @@ using System.Configuration;
 
 namespace ITMO.Y2020.Gr124.ADO.NET.LAB01
 {
-    public partial class Form1 : Form
+    public partial class CourseViewer : Form
     {
         //string connectionString =
         //@"Data Source=((LocalDB)\MSSQLLocalDB;Initial Catalog=Northwind; 
@@ -21,7 +21,7 @@ namespace ITMO.Y2020.Gr124.ADO.NET.LAB01
         //Integrated Security = True";
         //@"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog = Northwind;
         //Integrated Security = True";
-        public Form1()
+        public CourseViewer()
         {
             InitializeComponent();
 
