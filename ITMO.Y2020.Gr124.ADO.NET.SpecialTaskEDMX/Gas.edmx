@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище GasModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Composition">
+          <Key>
+            <PropertyRef Name="compositionName" />
+            <PropertyRef Name="componentFormula" />
+          </Key>
+          <Property Name="compositionName" Type="char" MaxLength="25" Nullable="false" />
+          <Property Name="componentFormula" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="componentVolume" Type="decimal" Precision="9" Scale="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Properties">
+          <Key>
+            <PropertyRef Name="gasName" />
+          </Key>
+          <Property Name="gasName" Type="char" MaxLength="25" Nullable="false" />
+          <Property Name="gasSize" Type="smallint" />
+          <Property Name="gasDencity" Type="decimal" Precision="6" Scale="3" />
+          <Property Name="gasConstant" Type="decimal" Precision="6" Scale="3" />
+          <Property Name="gasPath" Type="nchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="Components">
+          <Key>
+            <PropertyRef Name="componentName" />
+          </Key>
+          <Property Name="componentNumber" Type="smallint" Nullable="false" />
+          <Property Name="componentName" Type="char" MaxLength="25" Nullable="false" />
+          <Property Name="componentNameRu" Type="nchar" MaxLength="25" Nullable="false" />
+          <Property Name="componentFormula" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="componentMolarWeignt" Type="decimal" Precision="9" Scale="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Elements">
+          <Key>
+            <PropertyRef Name="elementName" />
+          </Key>
+          <Property Name="elementName" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="elementAtomicWeight" Type="decimal" Precision="9" Scale="6" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="Хранилище GasModelContainer">
+          <EntitySet Name="Composition" EntityType="Self.Composition" Schema="Gas" store:Type="Tables" />
+          <EntitySet Name="Properties" EntityType="Self.Properties" Schema="Gas" store:Type="Tables" />
+          <EntitySet Name="Components" EntityType="Self.Components" Schema="Media" store:Type="Tables" />
+          <EntitySet Name="Elements" EntityType="Self.Elements" Schema="Media" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Composition">
+          <Key>
+            <PropertyRef Name="compositionName" />
+            <PropertyRef Name="componentFormula" />
+          </Key>
+          <Property Name="compositionName" Type="String" MaxLength="25" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="componentFormula" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="componentVolume" Type="Decimal" Precision="9" Scale="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Properties">
+          <Key>
+            <PropertyRef Name="gasName" />
+          </Key>
+          <Property Name="gasName" Type="String" MaxLength="25" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="gasSize" Type="Int16" />
+          <Property Name="gasDencity" Type="Decimal" Precision="6" Scale="3" />
+          <Property Name="gasConstant" Type="Decimal" Precision="6" Scale="3" />
+          <Property Name="gasPath" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Components">
+          <Key>
+            <PropertyRef Name="componentName" />
+          </Key>
+          <Property Name="componentNumber" Type="Int16" Nullable="false" />
+          <Property Name="componentName" Type="String" MaxLength="25" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="componentNameRu" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="componentFormula" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="componentMolarWeignt" Type="Decimal" Precision="9" Scale="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Elements">
+          <Key>
+            <PropertyRef Name="elementName" />
+          </Key>
+          <Property Name="elementName" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="elementAtomicWeight" Type="Decimal" Precision="9" Scale="6" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="GasEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Composition" EntityType="Self.Composition" />
+          <EntitySet Name="Properties" EntityType="Self.Properties" />
+          <EntitySet Name="Components" EntityType="Self.Components" />
+          <EntitySet Name="Elements" EntityType="Self.Elements" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище GasModelContainer" CdmEntityContainer="GasEntities">
+          <EntitySetMapping Name="Composition">
+            <EntityTypeMapping TypeName="GasModel.Composition">
+              <MappingFragment StoreEntitySet="Composition">
+                <ScalarProperty Name="compositionName" ColumnName="compositionName" />
+                <ScalarProperty Name="componentFormula" ColumnName="componentFormula" />
+                <ScalarProperty Name="componentVolume" ColumnName="componentVolume" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Properties">
+            <EntityTypeMapping TypeName="GasModel.Properties">
+              <MappingFragment StoreEntitySet="Properties">
+                <ScalarProperty Name="gasName" ColumnName="gasName" />
+                <ScalarProperty Name="gasSize" ColumnName="gasSize" />
+                <ScalarProperty Name="gasDencity" ColumnName="gasDencity" />
+                <ScalarProperty Name="gasConstant" ColumnName="gasConstant" />
+                <ScalarProperty Name="gasPath" ColumnName="gasPath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Components">
+            <EntityTypeMapping TypeName="GasModel.Components">
+              <MappingFragment StoreEntitySet="Components">
+                <ScalarProperty Name="componentNumber" ColumnName="componentNumber" />
+                <ScalarProperty Name="componentName" ColumnName="componentName" />
+                <ScalarProperty Name="componentNameRu" ColumnName="componentNameRu" />
+                <ScalarProperty Name="componentFormula" ColumnName="componentFormula" />
+                <ScalarProperty Name="componentMolarWeignt" ColumnName="componentMolarWeignt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Elements">
+            <EntityTypeMapping TypeName="GasModel.Elements">
+              <MappingFragment StoreEntitySet="Elements">
+                <ScalarProperty Name="elementName" ColumnName="elementName" />
+                <ScalarProperty Name="elementAtomicWeight" ColumnName="elementAtomicWeight" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

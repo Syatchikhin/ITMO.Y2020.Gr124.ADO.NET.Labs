@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище GasModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Composition">
+          <Key>
+            <PropertyRef Name="compositionName" />
+            <PropertyRef Name="componentFormula" />
+          </Key>
+          <Property Name="compositionName" Type="char" MaxLength="25" Nullable="false" />
+          <Property Name="componentFormula" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="componentVolume" Type="decimal" Precision="9" Scale="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Properties">
+          <Key>
+            <PropertyRef Name="gasName" />
+          </Key>
+          <Property Name="gasName" Type="char" MaxLength="25" Nullable="false" />
+          <Property Name="gasSize" Type="smallint" />
+          <Property Name="gasDensity" Type="decimal" Precision="6" Scale="3" />
+          <Property Name="gasConstant" Type="decimal" Precision="6" Scale="3" />
+          <Property Name="gasPath" Type="nchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="Components">
+          <Key>
+            <PropertyRef Name="componentFormula" />
+          </Key>
+          <Property Name="componentNumber" Type="smallint" Nullable="false" />
+          <Property Name="componentName" Type="char" MaxLength="25" Nullable="false" />
+          <Property Name="componentNameRu" Type="char" MaxLength="25" Nullable="false" />
+          <Property Name="componentFormula" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="componentMolarWeignt" Type="decimal" Precision="9" Scale="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Elements">
+          <Key>
+            <PropertyRef Name="elementName" />
+          </Key>
+          <Property Name="elementName" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="elementAtomicWeight" Type="decimal" Precision="9" Scale="6" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Composition_To_Components">
+          <End Role="Components" Type="Self.Components" Multiplicity="1" />
+          <End Role="Composition" Type="Self.Composition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Components">
+              <PropertyRef Name="componentFormula" />
+            </Principal>
+            <Dependent Role="Composition">
+              <PropertyRef Name="componentFormula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Composition_To_Properties">
+          <End Role="Properties" Type="Self.Properties" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Composition" Type="Self.Composition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Properties">
+              <PropertyRef Name="gasName" />
+            </Principal>
+            <Dependent Role="Composition">
+              <PropertyRef Name="compositionName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="mixtureCalculation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gas">
+          <Parameter Name="mixtureName" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="Хранилище GasModelContainer">
+          <EntitySet Name="Composition" EntityType="Self.Composition" Schema="Gas" store:Type="Tables" />
+          <EntitySet Name="Properties" EntityType="Self.Properties" Schema="Gas" store:Type="Tables" />
+          <EntitySet Name="Components" EntityType="Self.Components" Schema="Media" store:Type="Tables" />
+          <EntitySet Name="Elements" EntityType="Self.Elements" Schema="Media" store:Type="Tables" />
+          <AssociationSet Name="FK_Composition_To_Components" Association="Self.FK_Composition_To_Components">
+            <End Role="Components" EntitySet="Components" />
+            <End Role="Composition" EntitySet="Composition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Composition_To_Properties" Association="Self.FK_Composition_To_Properties">
+            <End Role="Properties" EntitySet="Properties" />
+            <End Role="Composition" EntitySet="Composition" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Composition">
+          <Key>
+            <PropertyRef Name="compositionName" />
+            <PropertyRef Name="componentFormula" />
+          </Key>
+          <Property Name="compositionName" Type="String" MaxLength="25" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="componentFormula" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="componentVolume" Type="Decimal" Precision="9" Scale="6" Nullable="false" />
+          <NavigationProperty Name="Component" Relationship="Self.FK_Composition_To_Components" FromRole="Composition" ToRole="Components" />
+          <NavigationProperty Name="Property" Relationship="Self.FK_Composition_To_Properties" FromRole="Composition" ToRole="Properties" />
+        </EntityType>
+        <EntityType Name="Property">
+          <Key>
+            <PropertyRef Name="gasName" />
+          </Key>
+          <Property Name="gasName" Type="String" MaxLength="25" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="gasSize" Type="Int16" />
+          <Property Name="gasDensity" Type="Decimal" Precision="6" Scale="3" />
+          <Property Name="gasConstant" Type="Decimal" Precision="6" Scale="3" />
+          <Property Name="gasPath" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Compositions" Relationship="Self.FK_Composition_To_Properties" FromRole="Properties" ToRole="Composition" />
+        </EntityType>
+        <EntityType Name="Component">
+          <Key>
+            <PropertyRef Name="componentFormula" />
+          </Key>
+          <Property Name="componentNumber" Type="Int16" Nullable="false" />
+          <Property Name="componentName" Type="String" MaxLength="25" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="componentNameRu" Type="String" MaxLength="25" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="componentFormula" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="componentMolarWeignt" Type="Decimal" Precision="9" Scale="6" Nullable="false" />
+          <NavigationProperty Name="Compositions" Relationship="Self.FK_Composition_To_Components" FromRole="Components" ToRole="Composition" />
+        </EntityType>
+        <EntityType Name="Element">
+          <Key>
+            <PropertyRef Name="elementName" />
+          </Key>
+          <Property Name="elementName" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="elementAtomicWeight" Type="Decimal" Precision="9" Scale="6" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Composition_To_Components">
+          <End Role="Components" Type="Self.Component" Multiplicity="1" />
+          <End Role="Composition" Type="Self.Composition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Components">
+              <PropertyRef Name="componentFormula" />
+            </Principal>
+            <Dependent Role="Composition">
+              <PropertyRef Name="componentFormula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Composition_To_Properties">
+          <End Role="Properties" Type="Self.Property" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Composition" Type="Self.Composition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Properties">
+              <PropertyRef Name="gasName" />
+            </Principal>
+            <Dependent Role="Composition">
+              <PropertyRef Name="compositionName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GasEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Compositions" EntityType="Self.Composition" />
+          <EntitySet Name="Properties" EntityType="Self.Property" />
+          <EntitySet Name="Components" EntityType="Self.Component" />
+          <EntitySet Name="Elements" EntityType="Self.Element" />
+          <AssociationSet Name="FK_Composition_To_Components" Association="Self.FK_Composition_To_Components">
+            <End Role="Components" EntitySet="Components" />
+            <End Role="Composition" EntitySet="Compositions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Composition_To_Properties" Association="Self.FK_Composition_To_Properties">
+            <End Role="Properties" EntitySet="Properties" />
+            <End Role="Composition" EntitySet="Compositions" />
+          </AssociationSet>
+          <FunctionImport Name="mixtureCalculation">
+          <Parameter Name="mixtureName" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище GasModelContainer" CdmEntityContainer="GasEntities">
+          <EntitySetMapping Name="Compositions">
+            <EntityTypeMapping TypeName="GasModel.Composition">
+              <MappingFragment StoreEntitySet="Composition">
+                <ScalarProperty Name="compositionName" ColumnName="compositionName" />
+                <ScalarProperty Name="componentFormula" ColumnName="componentFormula" />
+                <ScalarProperty Name="componentVolume" ColumnName="componentVolume" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Properties">
+            <EntityTypeMapping TypeName="GasModel.Property">
+              <MappingFragment StoreEntitySet="Properties">
+                <ScalarProperty Name="gasName" ColumnName="gasName" />
+                <ScalarProperty Name="gasSize" ColumnName="gasSize" />
+                <ScalarProperty Name="gasDensity" ColumnName="gasDensity" />
+                <ScalarProperty Name="gasConstant" ColumnName="gasConstant" />
+                <ScalarProperty Name="gasPath" ColumnName="gasPath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Components">
+            <EntityTypeMapping TypeName="GasModel.Component">
+              <MappingFragment StoreEntitySet="Components">
+                <ScalarProperty Name="componentNumber" ColumnName="componentNumber" />
+                <ScalarProperty Name="componentName" ColumnName="componentName" />
+                <ScalarProperty Name="componentNameRu" ColumnName="componentNameRu" />
+                <ScalarProperty Name="componentFormula" ColumnName="componentFormula" />
+                <ScalarProperty Name="componentMolarWeignt" ColumnName="componentMolarWeignt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Elements">
+            <EntityTypeMapping TypeName="GasModel.Element">
+              <MappingFragment StoreEntitySet="Elements">
+                <ScalarProperty Name="elementName" ColumnName="elementName" />
+                <ScalarProperty Name="elementAtomicWeight" ColumnName="elementAtomicWeight" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="mixtureCalculation" FunctionName="Хранилище GasModel.mixtureCalculation" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,12 @@
+E:\max\Programming\06_ADO.NET_Osipov\ITMO.Y2020.Gr124.ADO.NET.Labs\CodeFirstGas\bin\Debug\CodeFirstGas.dll.config
+E:\max\Programming\06_ADO.NET_Osipov\ITMO.Y2020.Gr124.ADO.NET.Labs\CodeFirstGas\bin\Debug\CodeFirstGas.dll
+E:\max\Programming\06_ADO.NET_Osipov\ITMO.Y2020.Gr124.ADO.NET.Labs\CodeFirstGas\bin\Debug\CodeFirstGas.pdb
+E:\max\Programming\06_ADO.NET_Osipov\ITMO.Y2020.Gr124.ADO.NET.Labs\CodeFirstGas\bin\Debug\EntityFramework.dll
+E:\max\Programming\06_ADO.NET_Osipov\ITMO.Y2020.Gr124.ADO.NET.Labs\CodeFirstGas\bin\Debug\EntityFramework.SqlServer.dll
+E:\max\Programming\06_ADO.NET_Osipov\ITMO.Y2020.Gr124.ADO.NET.Labs\CodeFirstGas\bin\Debug\EntityFramework.xml
+E:\max\Programming\06_ADO.NET_Osipov\ITMO.Y2020.Gr124.ADO.NET.Labs\CodeFirstGas\bin\Debug\EntityFramework.SqlServer.xml
+E:\max\Programming\06_ADO.NET_Osipov\ITMO.Y2020.Gr124.ADO.NET.Labs\CodeFirstGas\obj\Debug\CodeFirstGas.csprojAssemblyReference.cache
+E:\max\Programming\06_ADO.NET_Osipov\ITMO.Y2020.Gr124.ADO.NET.Labs\CodeFirstGas\obj\Debug\CodeFirstGas.csproj.CoreCompileInputs.cache
+E:\max\Programming\06_ADO.NET_Osipov\ITMO.Y2020.Gr124.ADO.NET.Labs\CodeFirstGas\obj\Debug\CodeFirstGas.csproj.CopyComplete
+E:\max\Programming\06_ADO.NET_Osipov\ITMO.Y2020.Gr124.ADO.NET.Labs\CodeFirstGas\obj\Debug\CodeFirstGas.dll
+E:\max\Programming\06_ADO.NET_Osipov\ITMO.Y2020.Gr124.ADO.NET.Labs\CodeFirstGas\obj\Debug\CodeFirstGas.pdb

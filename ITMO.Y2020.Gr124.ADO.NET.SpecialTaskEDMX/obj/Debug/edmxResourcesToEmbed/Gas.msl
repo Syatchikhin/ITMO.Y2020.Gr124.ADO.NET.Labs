@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище GasModelContainer" CdmEntityContainer="GasEntities">
+    <EntitySetMapping Name="Composition">
+      <EntityTypeMapping TypeName="GasModel.Composition">
+        <MappingFragment StoreEntitySet="Composition">
+          <ScalarProperty Name="compositionName" ColumnName="compositionName" />
+          <ScalarProperty Name="componentFormula" ColumnName="componentFormula" />
+          <ScalarProperty Name="componentVolume" ColumnName="componentVolume" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Properties">
+      <EntityTypeMapping TypeName="GasModel.Properties">
+        <MappingFragment StoreEntitySet="Properties">
+          <ScalarProperty Name="gasName" ColumnName="gasName" />
+          <ScalarProperty Name="gasSize" ColumnName="gasSize" />
+          <ScalarProperty Name="gasDencity" ColumnName="gasDencity" />
+          <ScalarProperty Name="gasConstant" ColumnName="gasConstant" />
+          <ScalarProperty Name="gasPath" ColumnName="gasPath" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Components">
+      <EntityTypeMapping TypeName="GasModel.Components">
+        <MappingFragment StoreEntitySet="Components">
+          <ScalarProperty Name="componentNumber" ColumnName="componentNumber" />
+          <ScalarProperty Name="componentName" ColumnName="componentName" />
+          <ScalarProperty Name="componentNameRu" ColumnName="componentNameRu" />
+          <ScalarProperty Name="componentFormula" ColumnName="componentFormula" />
+          <ScalarProperty Name="componentMolarWeignt" ColumnName="componentMolarWeignt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Elements">
+      <EntityTypeMapping TypeName="GasModel.Elements">
+        <MappingFragment StoreEntitySet="Elements">
+          <ScalarProperty Name="elementName" ColumnName="elementName" />
+          <ScalarProperty Name="elementAtomicWeight" ColumnName="elementAtomicWeight" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

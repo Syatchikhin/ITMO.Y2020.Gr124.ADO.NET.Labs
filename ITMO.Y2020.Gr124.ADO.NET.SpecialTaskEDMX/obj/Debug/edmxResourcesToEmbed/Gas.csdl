@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Composition">
+    <Key>
+      <PropertyRef Name="compositionName" />
+      <PropertyRef Name="componentFormula" />
+    </Key>
+    <Property Name="compositionName" Type="String" MaxLength="25" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="componentFormula" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="componentVolume" Type="Decimal" Precision="9" Scale="6" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Properties">
+    <Key>
+      <PropertyRef Name="gasName" />
+    </Key>
+    <Property Name="gasName" Type="String" MaxLength="25" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="gasSize" Type="Int16" />
+    <Property Name="gasDencity" Type="Decimal" Precision="6" Scale="3" />
+    <Property Name="gasConstant" Type="Decimal" Precision="6" Scale="3" />
+    <Property Name="gasPath" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Components">
+    <Key>
+      <PropertyRef Name="componentName" />
+    </Key>
+    <Property Name="componentNumber" Type="Int16" Nullable="false" />
+    <Property Name="componentName" Type="String" MaxLength="25" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="componentNameRu" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="componentFormula" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="componentMolarWeignt" Type="Decimal" Precision="9" Scale="6" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Elements">
+    <Key>
+      <PropertyRef Name="elementName" />
+    </Key>
+    <Property Name="elementName" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="elementAtomicWeight" Type="Decimal" Precision="9" Scale="6" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="GasEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Composition" EntityType="Self.Composition" />
+    <EntitySet Name="Properties" EntityType="Self.Properties" />
+    <EntitySet Name="Components" EntityType="Self.Components" />
+    <EntitySet Name="Elements" EntityType="Self.Elements" />
+  </EntityContainer>
+</Schema>
