@@ -15,8 +15,8 @@ namespace ITMO.Y2020.Gr124.ADO.NET.Lab07.Ex3
             // MyProcedure3();
             // MyProcedure5();
             // MyProcedure6();
-            //MyProcedure7();
-            MyProcedure8();
+            MyProcedure7();
+            //MyProcedure8();
         }
 
         static List<Student> students = new List<Student>

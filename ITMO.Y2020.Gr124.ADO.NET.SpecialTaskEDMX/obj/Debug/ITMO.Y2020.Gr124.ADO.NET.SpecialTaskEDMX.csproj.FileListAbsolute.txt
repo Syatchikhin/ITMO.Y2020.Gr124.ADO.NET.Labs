@@ -1,7 +1,0 @@
-E:\Max\Programming\06_ADO.NET_Osipov\ITMO.Y2020.Gr124.ADO.NET.Labs\ITMO.Y2020.Gr124.ADO.NET.SpecialTaskEDMX\obj\Debug\ITMO.Y2020.Gr124.ADO.NET.SpecialTaskEDMX.csprojAssemblyReference.cache
-E:\Max\Programming\06_ADO.NET_Osipov\ITMO.Y2020.Gr124.ADO.NET.Labs\ITMO.Y2020.Gr124.ADO.NET.SpecialTaskEDMX\obj\Debug\ITMO.Y2020.Gr124.ADO.NET.SpecialTaskEDMX.mainForm.resources
-E:\Max\Programming\06_ADO.NET_Osipov\ITMO.Y2020.Gr124.ADO.NET.Labs\ITMO.Y2020.Gr124.ADO.NET.SpecialTaskEDMX\obj\Debug\ITMO.Y2020.Gr124.ADO.NET.SpecialTask.Properties.Resources.resources
-E:\Max\Programming\06_ADO.NET_Osipov\ITMO.Y2020.Gr124.ADO.NET.Labs\ITMO.Y2020.Gr124.ADO.NET.SpecialTaskEDMX\obj\Debug\ITMO.Y2020.Gr124.ADO.NET.SpecialTaskEDMX.csproj.GenerateResource.cache
-E:\Max\Programming\06_ADO.NET_Osipov\ITMO.Y2020.Gr124.ADO.NET.Labs\ITMO.Y2020.Gr124.ADO.NET.SpecialTaskEDMX\obj\Debug\ITMO.Y2020.Gr124.ADO.NET.SpecialTaskEDMX.csproj.CoreCompileInputs.cache
-E:\Max\Programming\06_ADO.NET_Osipov\ITMO.Y2020.Gr124.ADO.NET.Labs\ITMO.Y2020.Gr124.ADO.NET.SpecialTaskEDMX\obj\Debug\ITMO.Y2020.Gr124.ADO.NET.SpecialTask.exe
-E:\Max\Programming\06_ADO.NET_Osipov\ITMO.Y2020.Gr124.ADO.NET.Labs\ITMO.Y2020.Gr124.ADO.NET.SpecialTaskEDMX\obj\Debug\ITMO.Y2020.Gr124.ADO.NET.SpecialTask.pdb

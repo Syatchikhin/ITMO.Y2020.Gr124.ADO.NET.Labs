@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище GasModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Components">
+    <Key>
+      <PropertyRef Name="componentName" />
+    </Key>
+    <Property Name="componentName" Type="nchar" MaxLength="25" Nullable="false" />
+    <Property Name="componentNameRu" Type="nchar" MaxLength="25" Nullable="false" />
+    <Property Name="componentFormula" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="componentMW" Type="decimal" Precision="9" Scale="6" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Elements">
+    <Key>
+      <PropertyRef Name="elementName" />
+    </Key>
+    <Property Name="elementName" Type="nchar" MaxLength="40" Nullable="false" />
+    <Property Name="elementAW" Type="decimal" Precision="9" Scale="6" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Gases">
+    <Key>
+      <PropertyRef Name="gasName" />
+    </Key>
+    <Property Name="gasName" Type="nchar" MaxLength="25" Nullable="false" />
+    <Property Name="gasDensity" Type="decimal" Precision="9" Scale="6" />
+    <Property Name="gasConstant" Type="decimal" Precision="9" Scale="6" />
+    <Property Name="gasSize" Type="smallint" />
+    <Property Name="path" Type="nchar" MaxLength="40" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Mixtures">
+    <Key>
+      <PropertyRef Name="gasName" />
+      <PropertyRef Name="componentName" />
+    </Key>
+    <Property Name="gasName" Type="nchar" MaxLength="25" Nullable="false" />
+    <Property Name="componentName" Type="nchar" MaxLength="25" Nullable="false" />
+    <Property Name="volume" Type="decimal" Precision="9" Scale="6" />
+    <Property Name="Component_componentName" Type="nchar" MaxLength="25" Nullable="false" />
+    <Property Name="Gas_gasName" Type="nchar" MaxLength="25" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ComponentMixture">
+    <End Role="Components" Type="Self.Components" Multiplicity="1" />
+    <End Role="Mixtures" Type="Self.Mixtures" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Components">
+        <PropertyRef Name="componentName" />
+      </Principal>
+      <Dependent Role="Mixtures">
+        <PropertyRef Name="Component_componentName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GasMixture">
+    <End Role="Gases" Type="Self.Gases" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Mixtures" Type="Self.Mixtures" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gases">
+        <PropertyRef Name="gasName" />
+      </Principal>
+      <Dependent Role="Mixtures">
+        <PropertyRef Name="Gas_gasName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="mixtureCalculation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="mixtureName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="mixtureCalculationOutput" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="mixtureName" Type="varchar" Mode="In" />
+    <Parameter Name="mixtureDensity" Type="decimal" Mode="InOut" />
+    <Parameter Name="mixtureR" Type="decimal" Mode="InOut" />
+  </Function>
+  <Function Name="OutputD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="mixtureName" Type="varchar" Mode="In" />
+    <Parameter Name="mixtureDensity" Type="decimal" Mode="InOut" />
+  </Function>
+  <Function Name="OutputR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="mixtureName" Type="varchar" Mode="In" />
+    <Parameter Name="mixtureR" Type="decimal" Mode="InOut" />
+  </Function>
+  <EntityContainer Name="Хранилище GasModelContainer">
+    <EntitySet Name="Components" EntityType="Self.Components" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Elements" EntityType="Self.Elements" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Gases" EntityType="Self.Gases" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mixtures" EntityType="Self.Mixtures" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ComponentMixture" Association="Self.FK_ComponentMixture">
+      <End Role="Components" EntitySet="Components" />
+      <End Role="Mixtures" EntitySet="Mixtures" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GasMixture" Association="Self.FK_GasMixture">
+      <End Role="Gases" EntitySet="Gases" />
+      <End Role="Mixtures" EntitySet="Mixtures" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

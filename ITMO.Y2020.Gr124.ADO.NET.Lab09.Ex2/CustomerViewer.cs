@@ -105,13 +105,13 @@ namespace ITMO.Y2020.Gr124.ADO.NET.Lab09.Ex2
             {
                 ProductName = "Аудио",
                 Quantity = 12,
-                PurchaseDate = DateTime.Parse("12.05.2016")
+                PurchaseDate = DateTime.Parse("16.08.2020")
             });
             context.Orders.Add(new Order
             {
                 ProductName = "Видео",
                 Quantity = 22,
-                PurchaseDate = DateTime.Parse("10.06.2016")
+                PurchaseDate = DateTime.Parse("16.08.2020")
             });
             context.SaveChanges();
             orderlistBox.DataSource = context.Orders.ToList();
@@ -120,7 +120,7 @@ namespace ITMO.Y2020.Gr124.ADO.NET.Lab09.Ex2
             {
                 ProductName = "Авто",
                 Quantity = 101,
-                PurchaseDate = DateTime.Parse("10.01.2016"),
+                PurchaseDate = DateTime.Parse("16.08.2020"),
                 status = "Высокий"
             });
 

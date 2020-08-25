@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище GasModelContainer" CdmEntityContainer="GasEntities">
+    <EntitySetMapping Name="Components">
+      <EntityTypeMapping TypeName="GasModel.Component">
+        <MappingFragment StoreEntitySet="Components">
+          <ScalarProperty Name="componentName" ColumnName="componentName" />
+          <ScalarProperty Name="componentNameRu" ColumnName="componentNameRu" />
+          <ScalarProperty Name="componentFormula" ColumnName="componentFormula" />
+          <ScalarProperty Name="componentMW" ColumnName="componentMW" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Elements">
+      <EntityTypeMapping TypeName="GasModel.Element">
+        <MappingFragment StoreEntitySet="Elements">
+          <ScalarProperty Name="elementName" ColumnName="elementName" />
+          <ScalarProperty Name="elementAW" ColumnName="elementAW" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Gases">
+      <EntityTypeMapping TypeName="GasModel.Gas">
+        <MappingFragment StoreEntitySet="Gases">
+          <ScalarProperty Name="gasName" ColumnName="gasName" />
+          <ScalarProperty Name="gasDensity" ColumnName="gasDensity" />
+          <ScalarProperty Name="gasConstant" ColumnName="gasConstant" />
+          <ScalarProperty Name="gasSize" ColumnName="gasSize" />
+          <ScalarProperty Name="path" ColumnName="path" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mixtures">
+      <EntityTypeMapping TypeName="GasModel.Mixture">
+        <MappingFragment StoreEntitySet="Mixtures">
+          <ScalarProperty Name="gasName" ColumnName="gasName" />
+          <ScalarProperty Name="componentName" ColumnName="componentName" />
+          <ScalarProperty Name="volume" ColumnName="volume" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

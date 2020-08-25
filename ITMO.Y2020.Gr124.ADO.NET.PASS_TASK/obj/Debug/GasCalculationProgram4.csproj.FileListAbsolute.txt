@@ -1,0 +1,16 @@
+E:\max\Programming\06_ADO.NET_Osipov\code\GasCalculationProgram4\bin\Debug\GasCalculationProgram4.exe.config
+E:\max\Programming\06_ADO.NET_Osipov\code\GasCalculationProgram4\bin\Debug\GasCalculationProgram4.exe
+E:\max\Programming\06_ADO.NET_Osipov\code\GasCalculationProgram4\bin\Debug\GasCalculationProgram4.pdb
+E:\max\Programming\06_ADO.NET_Osipov\code\GasCalculationProgram4\bin\Debug\EntityFramework.dll
+E:\max\Programming\06_ADO.NET_Osipov\code\GasCalculationProgram4\bin\Debug\EntityFramework.SqlServer.dll
+E:\max\Programming\06_ADO.NET_Osipov\code\GasCalculationProgram4\bin\Debug\EntityFramework.xml
+E:\max\Programming\06_ADO.NET_Osipov\code\GasCalculationProgram4\bin\Debug\EntityFramework.SqlServer.xml
+E:\max\Programming\06_ADO.NET_Osipov\code\GasCalculationProgram4\bin\Debug\ru\EntityFramework.resources.dll
+E:\max\Programming\06_ADO.NET_Osipov\code\GasCalculationProgram4\obj\Debug\GasCalculationProgram4.csprojAssemblyReference.cache
+E:\max\Programming\06_ADO.NET_Osipov\code\GasCalculationProgram4\obj\Debug\GasCalculationProgram4.mainForm.resources
+E:\max\Programming\06_ADO.NET_Osipov\code\GasCalculationProgram4\obj\Debug\GasCalculationProgram4.Properties.Resources.resources
+E:\max\Programming\06_ADO.NET_Osipov\code\GasCalculationProgram4\obj\Debug\GasCalculationProgram4.csproj.GenerateResource.cache
+E:\max\Programming\06_ADO.NET_Osipov\code\GasCalculationProgram4\obj\Debug\GasCalculationProgram4.csproj.CoreCompileInputs.cache
+E:\max\Programming\06_ADO.NET_Osipov\code\GasCalculationProgram4\obj\Debug\GasCalculationProgram4.csproj.CopyComplete
+E:\max\Programming\06_ADO.NET_Osipov\code\GasCalculationProgram4\obj\Debug\GasCalculationProgram4.exe
+E:\max\Programming\06_ADO.NET_Osipov\code\GasCalculationProgram4\obj\Debug\GasCalculationProgram4.pdb

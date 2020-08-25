@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="309fc5b7f2334ec38fad302bbabb8c85" Name="Diagram1">
+        <EntityTypeShape EntityType="GasModel.Component" Width="2.25" PointX="5.875" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="GasModel.Element" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GasModel.Gas" Width="1.5" PointX="0.875" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="GasModel.Mixture" Width="2.375" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="GasModel.FK_ComponentMixture" ManuallyRouted="false" />
+        <AssociationConnector Association="GasModel.FK_GasMixture" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Component">
+    <Key>
+      <PropertyRef Name="componentName" />
+    </Key>
+    <Property Name="componentName" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="componentNameRu" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="componentFormula" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="componentMW" Type="Decimal" Precision="9" Scale="6" Nullable="false" />
+    <NavigationProperty Name="Mixtures" Relationship="Self.FK_ComponentMixture" FromRole="Components" ToRole="Mixtures" />
+  </EntityType>
+  <EntityType Name="Element">
+    <Key>
+      <PropertyRef Name="elementName" />
+    </Key>
+    <Property Name="elementName" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="elementAW" Type="Decimal" Precision="9" Scale="6" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Gas">
+    <Key>
+      <PropertyRef Name="gasName" />
+    </Key>
+    <Property Name="gasName" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="gasDensity" Type="Decimal" Precision="9" Scale="6" />
+    <Property Name="gasConstant" Type="Decimal" Precision="9" Scale="6" />
+    <Property Name="gasSize" Type="Int16" />
+    <Property Name="path" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Mixtures" Relationship="Self.FK_GasMixture" FromRole="Gases" ToRole="Mixtures" />
+  </EntityType>
+  <EntityType Name="Mixture">
+    <Key>
+      <PropertyRef Name="gasName" />
+      <PropertyRef Name="componentName" />
+    </Key>
+    <Property Name="gasName" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="componentName" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="volume" Type="Decimal" Precision="9" Scale="6" />
+    <Property Name="Component_componentName" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Gas_gasName" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Component" Relationship="Self.FK_ComponentMixture" FromRole="Mixtures" ToRole="Components" />
+    <NavigationProperty Name="Gas" Relationship="Self.FK_GasMixture" FromRole="Mixtures" ToRole="Gases" />
+  </EntityType>
+  <Association Name="FK_ComponentMixture">
+    <End Role="Components" Type="Self.Component" Multiplicity="1" />
+    <End Role="Mixtures" Type="Self.Mixture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Components">
+        <PropertyRef Name="componentName" />
+      </Principal>
+      <Dependent Role="Mixtures">
+        <PropertyRef Name="Component_componentName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GasMixture">
+    <End Role="Gases" Type="Self.Gas" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Mixtures" Type="Self.Mixture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gases">
+        <PropertyRef Name="gasName" />
+      </Principal>
+      <Dependent Role="Mixtures">
+        <PropertyRef Name="Gas_gasName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GasEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Components" EntityType="Self.Component" />
+    <EntitySet Name="Elements" EntityType="Self.Element" />
+    <EntitySet Name="Gases" EntityType="Self.Gas" />
+    <EntitySet Name="Mixtures" EntityType="Self.Mixture" />
+    <AssociationSet Name="FK_ComponentMixture" Association="Self.FK_ComponentMixture">
+      <End Role="Components" EntitySet="Components" />
+      <End Role="Mixtures" EntitySet="Mixtures" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GasMixture" Association="Self.FK_GasMixture">
+      <End Role="Gases" EntitySet="Gases" />
+      <End Role="Mixtures" EntitySet="Mixtures" />
+    </AssociationSet>
+    <FunctionImport Name="mixtureCalculation">
+      <Parameter Name="mixtureName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="mixtureCalculationOutput">
+      <Parameter Name="mixtureName" Mode="In" Type="String" />
+      <Parameter Name="mixtureDensity" Mode="InOut" Type="Decimal" />
+      <Parameter Name="mixtureR" Mode="InOut" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="OutputD">
+      <Parameter Name="mixtureName" Mode="In" Type="String" />
+      <Parameter Name="mixtureDensity" Mode="InOut" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="OutputR">
+      <Parameter Name="mixtureName" Mode="In" Type="String" />
+      <Parameter Name="mixtureR" Mode="InOut" Type="Decimal" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>

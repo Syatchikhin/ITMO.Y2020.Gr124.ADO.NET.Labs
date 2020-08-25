@@ -14,3 +14,5 @@ E:\max\Programming\06_ADO.NET_Osipov\ITMO.Y2020.Gr124.ADO.NET.Labs\ITMO.Y2020.Gr
 E:\max\Programming\06_ADO.NET_Osipov\ITMO.Y2020.Gr124.ADO.NET.Labs\ITMO.Y2020.Gr124.ADO.NET.Lab09.Ex4\obj\Debug\ITMO.Y2020.Gr124.ADO.NET.Lab09.Ex3.exe
 E:\max\Programming\06_ADO.NET_Osipov\ITMO.Y2020.Gr124.ADO.NET.Labs\ITMO.Y2020.Gr124.ADO.NET.Lab09.Ex4\obj\Debug\ITMO.Y2020.Gr124.ADO.NET.Lab09.Ex3.pdb
 E:\max\Programming\06_ADO.NET_Osipov\ITMO.Y2020.Gr124.ADO.NET.Labs\ITMO.Y2020.Gr124.ADO.NET.Lab09.Ex4\obj\Debug\ITMO.Y2020.Gr124.ADO.NET.Lab09.Ex3.OfficeAssignment.resources
+E:\max\Programming\06_ADO.NET_Osipov\ITMO.Y2020.Gr124.ADO.NET.Labs\ITMO.Y2020.Gr124.ADO.NET.Lab09.Ex4\bin\Debug\ru\EntityFramework.resources.dll
+E:\max\Programming\06_ADO.NET_Osipov\ITMO.Y2020.Gr124.ADO.NET.Labs\ITMO.Y2020.Gr124.ADO.NET.Lab09.Ex4\bin\Debug\ru\EntityFramework.SqlServer.resources.dll

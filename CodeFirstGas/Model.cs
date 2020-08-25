@@ -4,50 +4,59 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Data;
 using System.ComponentModel.DataAnnotations;
-//using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CodeFirstGas
 {
         public class GasContext : DbContext
         {
-            public GasContext() : base("MyTestGas")
+            public GasContext() : base("Gas5")
             { }
 
-            public DbSet<Composition> Compositions { get; set; }
+            public DbSet<Gas> Gases { get; set; }
             public DbSet<Mixture> Mixtures { get; set; }
             public DbSet<Component> Components { get; set; }
             public DbSet<Element> Elements { get; set; }
+
+        //Composite PK for Mixture
+        protected override void OnModelCreating( DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Mixture>().HasKey(u => new { u.gasName, u.componentName });
         }
 
-        //public partial class Property
-        public partial class Mixture
-        {
+
+    }
+
+    //    //public partial class Property
+    public partial class Gas
+    {
         [Key]
         public string gasName { get; set; }
-        public Composition gasMixture { get; set; }
-        public string gasPath { get; set; }
         public Nullable<short> gasSize { get; set; }
         public Nullable<decimal> gasDensity { get; set; }
         public Nullable<decimal> gasConstant { get; set; }
+        public string path { get; set; }
 
-        public override string ToString()
+        public ICollection<Mixture> Mixtures { get; set; }
+
+        public Gas()
         {
-            string s = gasName;
-            return s;
+            Mixtures = new List<Mixture>();
         }
     }
 
-    public partial class Composition
+    public partial class Mixture
     {
-        [Key]
-        public string compositionName { get; set; }
-        public string componentFormula { get; set; }
-        public decimal componentVolume { get; set; }
+        public string gasName { get; set; }
+        public string componentName { get; set; }
+        public decimal volume { get; set; }
 
+        public Component Component { get; set; } // one-to -one
         public override string ToString()
         {
-            string s = compositionName;
+            string s = gasName;
             return s;
         }
 
@@ -55,13 +64,15 @@ namespace CodeFirstGas
 
     public partial class Component
     {
-        public short componentNumber { get; set; }
+        //public short componentNumber { get; set; }
         [Key]
+        [ForeignKey("MixtureOf")]
         public string componentName { get; set; }
         public string componentNameRu { get; set; }
         public string componentFormula { get; set; }
-        public decimal componentMolarWeignt { get; set; }
+        public decimal componentMW { get; set; }
 
+        public Mixture MixtureOf { get; set; } // for one-to -one
         public override string ToString()
         {
             string s = componentName;
@@ -75,7 +86,7 @@ namespace CodeFirstGas
     {
         [Key]
         public string elementName { get; set; }
-        public decimal elementAtomicWeight { get; set; }
+        public decimal elementAW { get; set; }
 
         public override string ToString()
         {
@@ -86,7 +97,7 @@ namespace CodeFirstGas
 
     }
 
-    public class Model
-    {
-    }
+        //public class Model
+        //{
+        //}
 }

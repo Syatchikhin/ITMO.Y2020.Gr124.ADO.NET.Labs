@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище GasModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Components">
+    <Key>
+      <PropertyRef Name="componentName" />
+    </Key>
+    <Property Name="componentName" Type="nchar" MaxLength="25" Nullable="false" />
+    <Property Name="componentNameRu" Type="nchar" MaxLength="25" Nullable="false" />
+    <Property Name="componentFormula" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="componentMW" Type="decimal" Precision="9" Scale="6" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Elements">
+    <Key>
+      <PropertyRef Name="elementName" />
+    </Key>
+    <Property Name="elementName" Type="nchar" MaxLength="40" Nullable="false" />
+    <Property Name="elementAW" Type="decimal" Precision="9" Scale="6" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Gases">
+    <Key>
+      <PropertyRef Name="gasName" />
+    </Key>
+    <Property Name="gasName" Type="nchar" MaxLength="25" Nullable="false" />
+    <Property Name="gasDensity" Type="decimal" Precision="9" Scale="6" />
+    <Property Name="gasConstant" Type="decimal" Precision="9" Scale="6" />
+    <Property Name="gasSize" Type="smallint" />
+    <Property Name="path" Type="nchar" MaxLength="40" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Mixtures">
+    <Key>
+      <PropertyRef Name="gasName" />
+      <PropertyRef Name="componentName" />
+    </Key>
+    <Property Name="gasName" Type="nchar" MaxLength="25" Nullable="false" />
+    <Property Name="componentName" Type="nchar" MaxLength="25" Nullable="false" />
+    <Property Name="volume" Type="decimal" Precision="9" Scale="6" />
+  </EntityType>
+  <Association Name="FK_Mixture_Component">
+    <End Role="Components" Type="Self.Components" Multiplicity="1" />
+    <End Role="Mixtures" Type="Self.Mixtures" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Components">
+        <PropertyRef Name="componentName" />
+      </Principal>
+      <Dependent Role="Mixtures">
+        <PropertyRef Name="componentName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mixture_Gas">
+    <End Role="Gases" Type="Self.Gases" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Mixtures" Type="Self.Mixtures" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gases">
+        <PropertyRef Name="gasName" />
+      </Principal>
+      <Dependent Role="Mixtures">
+        <PropertyRef Name="gasName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище GasModelContainer">
+    <EntitySet Name="Components" EntityType="Self.Components" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Elements" EntityType="Self.Elements" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Gases" EntityType="Self.Gases" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mixtures" EntityType="Self.Mixtures" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Mixture_Component" Association="Self.FK_Mixture_Component">
+      <End Role="Components" EntitySet="Components" />
+      <End Role="Mixtures" EntitySet="Mixtures" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mixture_Gas" Association="Self.FK_Mixture_Gas">
+      <End Role="Gases" EntitySet="Gases" />
+      <End Role="Mixtures" EntitySet="Mixtures" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
